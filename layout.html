@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: TimesNewRoman;
+            justify-content: left;
+            align-items: left;
+            color:black;
+            height:1000px;
+            background-color: white;
+            margin:20px;
+            padding:30px;
+        }
+        
+        .solid {
+            border: 2px solid black;
+            border-radius:8px;
+        }
+        div h2 {color:rgb(23, 103, 182);}
+        div h1 {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100px;
+            border-radius:8px;
+            border-color: black;
+            border-style:solid;
+            border-width:2px;
+            color:black;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            background-image: linear-gradient(to right, rgba(156, 49, 244, 0), rgb(116, 22, 231));
+        }
+
+        .button {
+            background-color: white; 
+            color: black; 
+            border: 2px solid black;
+        }
+
+        .button:hover {
+            background-color: #01ffa2;
+            color: white;
+        }
+        
+        .headlines {
+        	font-size:25px;
+            color:green;
+        }
+        
+        .sublines1 {
+        	font-size:20px;
+            color:black;
+        }
+        
+        .sublines2 {
+        	font-size:23px;
+            color:black;
+        }
+        
+        .flex-container {
+        	font-size:17px;
+            color:black;
+            padding:0px;
+        }
+        
+        div.flex-container {
+        	display:flex;
+  			flex-direction: row;
+		}
+
+		div.flex-container > div {
+  			margin:5px;
+            padding:10px;
+		}
+
+		@media screen and (max-width:600px) {
+  			div.flex-container {
+    			flex-direction: column;
+  			}
+		}
+    </style>
+</head>
+
+<body>
+    <span class="headlines"><h2> Geeks for Geeks </span></h2>
+    <div class="sublines1"><b> A Computer Science Portal for Geeks </div><b>
+    <hr>
+    <div class="sublines2"><b> Portofolio </div><b><br>
+    <div class="flex-container">
+  		<div class="solid">
+            <h1 class="h1 button"> HTML </h1>
+    		<h2> HTML Tutorials </h2>
+    		<p> HyperText Markup Language, a standard markup language 
+                used to create and design the basic structure of web pages. </p>
+  		</div>
+
+  		<div class="solid">
+            <h1 class="h1 button"> CSS </h1>
+    		<h2> CSS Tutorials </h2>
+    		<p> Cascading Style Sheets, a stylesheet language used to describe 
+                the appearance and formatting of documents written in markup 
+                languages such as HTML or XML. </p>
+  		</div>
+
+  		<div class="solid">
+            <h1 class="h1 button"> PHP </h1>
+    		<h2> PHP Tutorials </h2>
+    		<p> Hypertext Preprocessor, is an open-source server-side scripting 
+                language used for dynamic web development. </p>
+  		</div>  
+  
+ 		<div class="solid">
+            <h1 class="h1 button"> JAVASCRIPT </h1>
+    		<h2> JavaScript Tutorials </h2>
+    		<p> JavaScript, is a scripting language used to create interactive 
+                and dynamic web pages, adding animations, content updates, and 
+                other complex features. </p>
+  		</div>
+    </div>
+</body>
+
+</html>
