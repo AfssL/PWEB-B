@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Dynamic Dropdown List </title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: linear-gradient(to right, rgba(58, 105, 244, 0), rgb(48, 72, 211));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        select:hover {
+            border-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2> Dynamic Dropdown List Product </h2>
+
+        <select id="jenis" onchange="showMerk()">
+            <option value=""> Pilih Jenis Produk </option>
+            <option value="Desktop"> Desktop </option>
+            <option value="Laptop"> Laptop </option>
+            <option value="Smartphone"> Smartphone </option>
+        </select>
+
+        <select id="merk">
+            <option value=""> Pilih Merk </option>
+        </select>
+    </div>
+
+    <script>
+        const dataMerk = {
+            "Desktop": ["HP", "Lenovo", "Dell", "ASUS", "Apple", "Acer", "MSI"],
+            "Laptop": ["Lenovo", "HP", "Dell", "ASUS", "Acer", "Apple", "Samsung", "MSI", "Huawei", "Advan", "Axioo"],
+            "Smartphone": ["Samsung", "iPhone", "Xiaomi", "OPPO", "vivo", "Infinix", "Realme", "Google Pixel", "Huawei"]
+        };
+
+        function showMerk() {
+            const jenis = document.getElementById("jenis").value;
+            const merk = document.getElementById("merk");
+
+            merk.innerHTML = "<option value=''>Pilih Merk</option>";
+
+            if (jenis && dataMerk[jenis]) {
+                dataMerk[jenis].forEach(function(item) {
+                    const option = document.createElement("option");
+                    option.value = item;
+                    option.text = item;
+                    merk.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
