@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Pencarian Kode Pos di Pulau Jawa </title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: linear-gradient(to right, rgba(58, 105, 244, 0), rgb(48, 72, 211));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f7f7f7;
+            min-height: 50px;
+            text-align: center;
+        }
+
+        .kodepos {
+            background: #e0f2ff;
+            border: 1px solid #b3e5fc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2> Pencarian Kode Pos di Pulau Jawa </h2>
+
+    <label for="provinsi"> Provinsi </label>
+    <select id="provinsi">
+        <option value=""> -- Pilih Provinsi -- </option>
+    </select>
+
+    <label for="kota"> Kota / Kabupaten </label>
+    <select id="kota">
+        <option value=""> -- Pilih Kota / Kabupaten -- </option>
+    </select>
+
+    <label for="kecamatan"> Kecamatan </label>
+    <select id="kecamatan">
+        <option value=""> -- Pilih Kecamatan -- </option>
+    </select>
+
+    <button onclick="cariKodePos()"> Cari Kode Pos </button>
+
+    <div id="hasil"> Silakan lengkapi pilihan di atas. </div>
+</div>
+
+<script>
+    const dataKodePos = {
+        "Banten": {
+            "Tangerang": {
+                "Cipondoh": { kode: "15148", daerah: "Kelurahan Cipondoh, Tangerang" },
+                "Karawaci": { kode: "15115", daerah: "Kelurahan Karawaci, Tangerang" }
+            },
+            "Serang": {
+                "Cipocok Jaya": { kode: "42121", daerah: "Kelurahan Cipocok Jaya, Serang" },
+                "Taktakan": { kode: "42142", daerah: "Kelurahan Taktakan, Serang" }
+            }
+        },
+        "DKI Jakarta": {
+            "Jakarta Pusat": {
+                "Gambir": { kode: "10110", daerah: "Kelurahan Gambir, Jakarta Pusat" },
+                "Senen": { kode: "10410", daerah: "Kelurahan Senen, Jakarta Pusat" }
+            },
+            "Jakarta Selatan": {
+                "Kebayoran Baru": { kode: "12120", daerah: "Kelurahan Senayan, Kebayoran Baru, Jakarta Selatan" },
+                "Pasar Minggu": { kode: "12520", daerah: "Kelurahan Pasar Minggu, Jakarta Selatan" }
+            }
+        },
+        "Jawa Barat": {
+            "Bandung": {
+                "Coblong": { kode: "40132", daerah: "Kelurahan Dago, Coblong, Bandung" },
+                "Sukajadi": { kode: "40162", daerah: "Kelurahan Sukajadi, Bandung" }
+            },
+            "Bekasi": {
+                "Bekasi Timur": { kode: "17113", daerah: "Kelurahan Margahayu, Bekasi Timur" },
+                "Rawalumbu": { kode: "17116", daerah: "Kelurahan Bojong Rawalumbu, Rawalumbu, Bekasi" }
+            }
+        },
+        "Jawa Tengah": {
+            "Semarang": {
+                "Gajahmungkur": { kode: "50232", daerah: "Kelurahan Gajahmungkur, Semarang" },
+                "Tembalang": { kode: "50275", daerah: "Kelurahan Tembalang, Semarang" }
+            },
+            "Surakarta (Solo)": {
+                "Banjarsari": { kode: "57136", daerah: "Kelurahan Banjarsari, Surakarta" },
+                "Laweyan": { kode: "57148", daerah: "Kelurahan Laweyan, Surakarta" }
+            }
+        },
+        "DI Yogyakarta": {
+            "Yogyakarta": {
+                "Gondokusuman": { kode: "55222", daerah: "Kelurahan Demangan, Gondokusuman, Yogyakarta" },
+                "Kotagede": { kode: "55173", daerah: "Kelurahan Rejowinangun, Kotagede, Yogyakarta" }
+            },
+            "Sleman": {
+                "Depok": { kode: "55281", daerah: "Kelurahan Caturtunggal, Depok, Sleman" },
+                "Gamping": { kode: "55294", daerah: "Kelurahan Trihanggo, Gamping, Sleman" }
+            }
+        },
+        "Jawa Timur": {
+            "Surabaya": {
+                "Sukolilo": { kode: "60111", daerah: "Kelurahan Keputih, Kecamatan Sukolilo, Surabaya" },
+                "Gubeng": { kode: "60281", daerah: "Kelurahan Gubeng, Surabaya" }
+            },
+            "Malang": {
+                "Klojen": { kode: "65111", daerah: "Kelurahan Klojen, Malang" },
+                "Lowokwaru": { kode: "65141", daerah: "Kelurahan Lowokwaru, Malang" }
+            }
+        }
+    };
+
+    const provSelect = document.getElementById("provinsi");
+    const kotaSelect = document.getElementById("kota");
+    const kecSelect = document.getElementById("kecamatan");
+    const hasilDiv = document.getElementById("hasil");
+
+    for (const prov in dataKodePos) {
+        provSelect.add(new Option(prov, prov));
+    }
+
+    provSelect.addEventListener("change", function() {
+        kotaSelect.innerHTML = "<option value=''>-- Pilih Kota / Kabupaten --</option>";
+        kecSelect.innerHTML = "<option value=''>-- Pilih Kecamatan --</option>";
+        hasilDiv.innerHTML = "Silakan lengkapi pilihan di atas.";
+
+        if (this.value) {
+            const kotaList = dataKodePos[this.value];
+            for (const kota in kotaList) {
+                kotaSelect.add(new Option(kota, kota));
+            }
+        }
+    });
+
+    kotaSelect.addEventListener("change", function() {
+        kecSelect.innerHTML = "<option value=''>-- Pilih Kecamatan --</option>";
+        hasilDiv.innerHTML = "Silakan lengkapi pilihan di atas.";
+        
+        const prov = provSelect.value;
+        if (this.value) {
+            const kecList = dataKodePos[prov][this.value];
+            for (const kec in kecList) {
+                kecSelect.add(new Option(kec, kec));
+            }
+        }
+    });
+    
+    function cariKodePos() {
+        const prov = provSelect.value;
+        const kota = kotaSelect.value;
+        const kec = kecSelect.value;
+
+        if (prov && kota && kec) {
+            const data = dataKodePos[prov][kota][kec];
+            hasilDiv.innerHTML = `<div class="kodepos">
+                <p style="margin:0; font-size: 1.5em; font-weight: bold;">${data.kode}</p>
+                <p style="margin:5px 0 0 0; color: #333;">${data.daerah}</p>
+            </div>`;
+        } else {
+            hasilDiv.innerHTML = "<p style='color:red'>Lengkapi semua pilihan terlebih dahulu!</p>";
+        }
+    }
+</script>
+</body>
+
+</html>
