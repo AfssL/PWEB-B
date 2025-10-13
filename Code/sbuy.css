@@ -1,0 +1,251 @@
+:root {
+    --primary-bg: #1a1a1a;
+    --secondary-bg: #2a2a2a;
+    --text-color: #e0e0e0;
+    --heading-color: #f0f0f0;
+    --accent-color-1: #ff6b6b;
+    --accent-color-2: #6bffb3;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --border-radius-lg: 12px;
+    --border-radius-md: 8px;
+}
+
+/* style untuk base web nya */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: var(--font-body);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6; /* sedikit disesuaikan */
+    overflow-x: hidden;
+}
+
+/* style untuk container section */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 20px;
+}
+
+/* style header & navigasi */
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 1rem 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--heading-color);
+}
+nav ul {
+    list-style: none;
+    display: flex;
+}
+nav ul li {
+    margin-left: 2rem;
+}
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color-1);
+}
+
+/* style bagian hero Section */
+#hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('https://github.com/AfssL/PWEB-B/blob/ETS/ASET/pexels-tara-winstead-6692962.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    padding: 80px 20px; /* menambahkan padding horizontal */
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* style untuk bagian kontainer form nya*/
+.form-container {
+    position: relative;
+    z-index: 2;
+    background: rgba(26, 26, 26, 0.85); 
+    backdrop-filter: blur(5px);
+    padding: 1.8rem; /* dikecilkan agar pas */
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 550px; /* sedikit diperkecil juga */
+    width: 100%;
+}
+.form-container h2 {
+    color: var(--heading-color);
+    font-family: var(--font-heading);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem; /* dikecilkan agar pas */
+}
+.form-group {
+    margin-bottom: 0.8rem; /* dikecilkan agar pas */
+    text-align: left;
+}
+label {
+    display: block;
+    margin-bottom: 0.4rem; /* dikecilkan agar pas */
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.9rem; /* dikecilkan agar pas */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.6rem 0.9rem; /* dikecilkan agar pas */
+    background-color: var(--secondary-bg);
+    border: 1px solid #444;
+    border-radius: var(--border-radius-md);
+    color: var(--text-color);
+    font-size: 0.9rem; /* dikecilkan agar pas */
+    font-family: var(--font-body);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent-color-1);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0e0e0' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: var(--accent-color-1);
+    color: white;
+    padding: 0.8rem; /* dikecilkan agar pas */
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-size: 1rem; /* dikecilkan agar pas */
+    font-weight: 600;
+    font-family: var(--font-heading);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 0.8rem; 
+}
+
+button[type="submit"]:hover {
+    background-color: #e05e5e;
+    transform: translateY(-2px);
+}
+
+/* style untuk status pesannya*/
+#status {
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    font-weight: 500;
+    display: none; 
+    font-size: 0.9rem;
+}
+.success {
+    background-color: rgba(107, 255, 179, 0.15);
+    color: var(--accent-color-2);
+    border: 1px solid var(--accent-color-2);
+    display: block;
+}
+.error {
+    background-color: rgba(255, 107, 107, 0.15);
+    color: var(--accent-color-1);
+    border: 1px solid var(--accent-color-1);
+    display: block;
+}
+
+/* style untuk general section */
+main section h2 {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: var(--heading-color);
+    text-align: center;
+}
+
+/* style about section atau FAQ nya */
+#about {padding-top: 6rem;}
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* setiap FAQ akan mengambil satu baris penuh */
+    gap: 1.5rem; /* jarak antar FAQ */
+    max-width: 900px; /* batasi lebar maksnya */
+    margin: 0 auto;
+}
+.about-content {
+    text-align: left;
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border-left: 5px solid; /* border utama di sisi kiri */
+    border-left-color: #6bffb3;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.about-content h2 {
+    text-align: left;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #6bffb3;
+}
